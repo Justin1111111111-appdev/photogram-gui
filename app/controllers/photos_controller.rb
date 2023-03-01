@@ -97,7 +97,7 @@ class PhotosController < ApplicationController
 
     the_comment.save
 
-     render({ :template => "photo_templates/comment.html.erb" })
-    #redirect_to("/photos/" + the_comment.username.to_s )
+     #render({ :template => "photo_templates/comment.html.erb" })
+    redirect_to("/photos/" + the_id )
   end
 end
