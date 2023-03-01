@@ -100,5 +100,6 @@ the_photo.destroy
 
 
     render({ :template => "photo_templates/comment.html.erb" })
+    #redirect_to("/photos/ #{the_comment.id}"
   end
 end
