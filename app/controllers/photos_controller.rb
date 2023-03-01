@@ -49,6 +49,30 @@ the_photo.destroy
   a_new_photo.save
 
     #render({ :template => "photo_templates/create.html.erb" })
-    redirect_to("/photos/" + a_new_photo.id.to_s)
+
+    next_url = "/photos/" + a_new_photo.id.to_s
+    redirect_to(next_url)
+  end
+
+  def update
+    #Parameters: {"query_image"=>"https://omsdpiprod.wpenginepowered.com/wp-content/uploads/2020/12/DPI_Aerial-OPT3-1-scaled-1-2048x1152.jpeg", "query_caption"=>"DPI Updated", "modify_id"=>"955"}
+
+    the_id = params.fetch("modify_id")
+
+    matching_photos = Photo.where({ :id => the_id })
+
+   the_photo = matching_photos.at(0)
+
+  input_image = params.fetch("query_image")
+  input_caption = params.fetch("query_caption")
+ 
+  the_photo.image = input_image
+  the_photo.caption = input_caption
+
+  the_photo.save
+
+    #render({ :template => "photo_templates/update.html.erb" })
+    next_url = "/photos/" + the_photo.id.to_s
+    redirect_to(next_url)
   end
 end
