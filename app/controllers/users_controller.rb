@@ -37,8 +37,8 @@ class UsersController < ApplicationController
     
   render({ :template => "user_templates/create.html.erb" })
 
-    #next_url = "/users/" + a_new_user.id.to_s
-    #redirect_to(next_url)
+    #redirect_to("/users/ #{a_new_user.username}")
+    
   end
 
   def update

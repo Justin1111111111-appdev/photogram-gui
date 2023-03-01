@@ -48,10 +48,10 @@ the_photo.destroy
 
   a_new_photo.save
 
-    #render({ :template => "photo_templates/create.html.erb" })
+    render({ :template => "photo_templates/create.html.erb" })
 
-    next_url = "/photos/" + a_new_photo.id.to_s
-    redirect_to(next_url)
+    #next_url = "/photos/" + a_new_photo.id.to_s
+    #redirect_to(next_url)
   end
 
   def update
@@ -74,5 +74,31 @@ the_photo.destroy
     #render({ :template => "photo_templates/update.html.erb" })
     next_url = "/photos/" + the_photo.id.to_s
     redirect_to(next_url)
+  end
+
+  def comment
+    #Parameters: {"input_photo_id"=>"958", "input_author_id"=>"123", "input_body"=>"WOW", "comment_id"=>"958"}
+   
+    the_id = params.fetch("comment_id")
+
+    matching_comments = Comment.where({ :id => the_id })
+
+    the_comment = matching_comments.at(0)
+
+    input_photo = params.fetch("input_photo_id")
+    input_author = params.fetch("input_author_id")
+    input_body = params.fetch("input_body")
+    
+    the_comment = Comment.new
+
+    the_comment.photo_id = input_photo
+    the_comment.author_id = input_author
+    the_comment.body = input_body
+  
+
+    the_comment.save
+
+
+    render({ :template => "photo_templates/comment.html.erb" })
   end
 end
