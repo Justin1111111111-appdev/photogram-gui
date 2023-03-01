@@ -35,9 +35,9 @@ class UsersController < ApplicationController
   a_new_user.save
   
     
-  render({ :template => "user_templates/create.html.erb" })
+  #render({ :template => "user_templates/create.html.erb" })
 
-    #redirect_to("/users/ #{a_new_user.username}")
+    redirect_to("/users/#{a_new_user.username}")
     
   end
 
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   
     the_user.save
 
-    render({ :template => "user_templates/update.html.erb" })
-   #redirect_to("/users/ #{the_user.username}")
+    #render({ :template => "user_templates/update.html.erb" })
+   redirect_to("/users/#{the_user.username}")
   end
 end  
